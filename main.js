@@ -17,9 +17,6 @@ const clientApp = new SDKClient(initialData);
 
 clientApp.onTriggerAction = async ({ id, message }) => {
   if (message.actionId === 'start_pomodoro') {
-    app.whenReady().then(() => {
-      createWindow()
-    })
   }
 };
 
@@ -37,7 +34,6 @@ const server = createServer(app);
 const io = new Server(server);
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json({ extended: false }))
 
 app.use(express.static('public'));
 

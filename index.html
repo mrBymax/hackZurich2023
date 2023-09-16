@@ -5,115 +5,19 @@
     <link href=
     "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     rel="stylesheet">
-    <title>Hello World!</title>
-    <script>
-    // Function to toggle the visibility of the "minutes" input
-    function fadeBackgroundImage(newImageUrl) {
-         var body = document.getElementsByTagName("body")[0];
-    var fadeInDuration = 200; // Adjust the duration as needed
-    var fadeOutDuration = 200; // Adjust the duration as needed
-
-    var tempDiv = document.createElement("div");
-    tempDiv.style.position = "fixed";
-    tempDiv.style.top = "0";
-    tempDiv.style.left = "0";
-    tempDiv.style.width = "100%";
-    tempDiv.style.height = "100%";
-    tempDiv.style.backgroundImage = "url('" + newImageUrl + "')";
-    tempDiv.style.opacity = 0;
-    tempDiv.style.transition = "opacity " + fadeInDuration + "ms ease-in-out";
-
-    // Add the temporary div to the body
-    body.prepend(tempDiv);
-
-    // Force a repaint to ensure the transition is applied
-    tempDiv.offsetHeight;
-
-    // Fade in the new image
-    tempDiv.style.opacity = 1;
-
-    // After the fadeInDuration, remove the old background and the temporary div
-    setTimeout(function () {
-        body.style.backgroundImage = "url('" + newImageUrl + "')";
-        tempDiv.style.opacity = 0;
-        setTimeout(function () {
-            body.removeChild(tempDiv);
-        }, fadeOutDuration);
-    }, fadeInDuration);
-    }
-
-    function toggleBackground() {
-        var mode = document.getElementById("gameModeRadio");
-    if (mode.checked) {
-         fadeBackgroundImage("http://localhost:8327/game.jpg");
-     } else {
-         fadeBackgroundImage("http://localhost:8327/study.jpg");
-     }
-     }
-
-     function toggleMinutesInput() {
-         var gameModeRadio = document.getElementById("gameModeRadio");
-     var minutesInput = document.getElementById("minutesInput");
-
-     // Check if the "Game Mode" radio button is selected
-     if (gameModeRadio.checked) {
-       minutesInput.style.display = "none"; // Hide the input
-     } else {
-       minutesInput.style.display = "block"; // Show the input
-     }
-         setTimeout(toggleBackground, 100);
-         setTimeout(toggleTextFont, 100);
-     }
-
-     document.addEventListener("DOMContentLoaded", function(event) {
-     toggleMinutesInput();
-    });
-
-     function fadeTextFont(newFont) {
-    var fadeDuration = 200; // Adjust the duration as needed
-    var initialFont = getComputedStyle(textElement).fontFamily;
-
-    textElement.style.transition = "font " + fadeDuration + "ms ease-in-out";
-    textElement.style.fontFamily = newFont;
-
-    // After the fadeDuration, remove the transition property
-    setTimeout(function () {
-        textElement.style.transition = "";
-    }, fadeDuration);
-}
-
-function toggleTextFont() {
-    if (mode.checked) {
-        fadeTextFont("Arial, sans-serif");
-    } else {
-        fadeTextFont("Times New Roman, serif");
-    }
-     }
-
-     function reportStart() {
-         var mode = document.getElementById("gameModeRadio");
-        var minutes = document.getElementById("minutes");
-        var time = minutes.value;
-        var request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:8327/start", true);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify({
-            mode: mode.checked ? 1 : 0,
-            time: time
-        }));
-         return false;
-    }
-    </script>
+    <title>Focus Pomodoro</title>
+    <script src="script.js"></script>
 </head>
 <body>
     <div class=
     "container mt-5 h-100 justify-content-center align-items-center"
-    style="">
+    style="background-size: cover;">
         <div class="card p-5" style="background-color: rgba(255, 255, 255, 0.7);">
             <div class="text-center">
                 <h1>Focus Pomodoro</h1>
                 <hr>
             </div>
+            <p id="message"></p>
             <form class="border-1" action="#" onsubmit="reportStart()">
                 <div class="form-group row">
                     <legend class=
@@ -155,8 +59,15 @@ function toggleTextFont() {
     "https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src=
     "https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-
     <script src=
     "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+     const socket = io();
+
+     socket.on('update', (data) => {
+         document.getElementById('message').textContent = JSON.stringify(data);
+     });
+    </script>
 </body>
 </html>
