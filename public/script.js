@@ -3,8 +3,8 @@
 // Function to toggle the visibility of the "minutes" input
 function fadeBackgroundImage(newImageUrl) {
   var body = document.getElementsByTagName("body")[0];
-  var fadeInDuration = 1000; // Adjust the duration as needed
-  var fadeOutDuration = 10100; // Adjust the duration as needed
+  var fadeInDuration = 200; // Adjust the duration as needed
+  var fadeOutDuration = 200; // Adjust the duration as needed
 
   var tempDiv = document.createElement("div");
   tempDiv.style.position = "fixed";
@@ -12,7 +12,7 @@ function fadeBackgroundImage(newImageUrl) {
   tempDiv.style.left = "0";
   tempDiv.style.width = "100%";
   tempDiv.style.height = "100%";
-  tempDiv.style.backgroundImage = "url('" + newImageUrl + "') no-repeat";
+  tempDiv.style.backgroundImage = "url('" + newImageUrl + "')";
   tempDiv.style.opacity = 0.0;
   tempDiv.style.transition = "opacity " + fadeInDuration + "ms ease-in-out";
 
@@ -73,5 +73,21 @@ function reportStart() {
     mode: mode.checked ? 1 : 0,
     time: time
   }));
+  return false;
+}
+
+function reportStop() {
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:8327/stop", true);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send();
+  return false;
+}
+
+function reportReset() {
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:8327/reset", true);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send();
   return false;
 }
