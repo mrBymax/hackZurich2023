@@ -1,0 +1,22 @@
+{
+  "name": "logi-pomodoro-1.0.0",
+  "version": "1.0.0",
+  "description": "Pomodoro timer using mouse, keyboard, camera and optionally brain waves",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.3.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "open": "^9.1.0",
+    "reconnecting-websocket": "^4.4.0",
+    "socket.io": "^4.7.2",
+    "ws": "^8.14.1"
+  }
+}

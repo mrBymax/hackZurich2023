@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+    "width=device-width, initial-scale=1.0">
+    <title>Real-Time Updates</title>
+</head>
+<body>
+    <h1>Real-Time Updates</h1>
+    <p id="message"></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+
+        const socket = io();
+
+        socket.on('update', (data) => {
+            document.getElementById('message').textContent = JSON.stringify(data);
+        });
+    </script>
+</body>
+</html>

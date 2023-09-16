@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+    "width=device-width, initial-scale=1.0">
+    <title>Pomodoro Tracker</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+        .timer {
+            text-align: center;
+        }
+        .log {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .log ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .log ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer">
+        <h1 id="timer-display">25:00</h1><button id=
+        "start-button">Start</button> <button id=
+        "pause-button">Pause</button> <button id=
+        "reset-button">Reset</button>
+    </div>
+    <div class="log">
+        <ul id="log-list"></ul>
+    </div>
+    <script>
+     document.addEventListener("DOMContentLoaded", () => {
+         const socket = io();
+
+         const timerDisplay = document.getElementById("timer-display");
+         const startButton = document.getElementById("start-button");
+         const pauseButton = document.getElementById("pause-button");
+         const resetButton = document.getElementById("reset-button");
+         const logList = document.getElementById("log-list");
+
+         let timerInterval;
+         let minutes = 25; // Initial Pomodoro time in minutes
+         let seconds = 0;
+         let isRunning = false;
+
+         // Function to update the timer display
+         function updateTimerDisplay() {
+             timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+         }
+
+         // Event listener for the start button
+         startButton.addEventListener("click", () => {
+             if (!isRunning) {
+                 isRunning = true;
+                 startButton.disabled = true;
+                 pauseButton.disabled = false;
+                 resetButton.disabled = false;
+                 timerInterval = setInterval(() => {
+                     if (minutes === 0 && seconds === 0) {
+                         clearInterval(timerInterval);
+                         isRunning = false;
+                         startButton.disabled = false;
+                         pauseButton.disabled = true;
+                         resetButton.disabled = true;
+                     } else if (seconds === 0) {
+                         minutes--;
+                         seconds = 59;
+                     } else {
+                         seconds--;
+                     }
+                     updateTimerDisplay();
+                 }, 1000);
+             }
+         });
+
+         // Event listener for the pause button
+         pauseButton.addEventListener("click", () => {
+             if (isRunning) {
+                 isRunning = false;
+                 clearInterval(timerInterval);
+                 startButton.disabled = false;
+                 pauseButton.disabled = true;
+             }
+         });
+
+         // Event listener for the reset button
+         resetButton.addEventListener("click", () => {
+             clearInterval(timerInterval);
+             isRunning = false;
+             minutes = 25; // Reset to initial Pomodoro time
+             seconds = 0;
+             updateTimerDisplay();
+             startButton.disabled = false;
+             pauseButton.disabled = true;
+             resetButton.disabled = true;
+         });
+
+         // Socket.io event listeners for real-time updates
+         socket.on("update", (data) => {
+             // Handle updates from the server, e.g., updating logList
+             const newItem = document.createElement("li");
+             newItem.textContent = `${data.focus} (${data.time} minutes)`;
+             logList.appendChild(newItem);
+         });
+     });
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
