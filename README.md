@@ -52,6 +52,11 @@ Additionally, we aim to incorporate machine learning techniques to personalize t
 
 We used OpenBCI's 8-channel EEG headset whose electrodes we plan on incorporating through the Logitech headphones. We used a Band Pass filter and notch filter to carry out the initial filtering of the signals obtained from the EEG electrodes and then convert them into Alpha, Beta, Gamma, Theta and Delta frequency wave categories. We use the ratio between Alpha and Beta waves to determine the level of focus the user has at different standpoints and a threshold to determine if they are focused or not. The logic is similar to most of the focus determining BCI tools available on the market and is possible to carry out with even 4 electrodes.
 
+## Activity Recognition
+Activity recognition was carried out using [mmaction](https://github.com/open-mmlab/mmaction2/)
+
+## BCI
+BCI was done using [brainflow](https://brainflow.org/)
 
 ## Gaze Estimation
 Since gaze tracking model is using [existing repo](https://github.com/antoinelame/GazeTracking), you will also need to pull submodule for that model before running.
