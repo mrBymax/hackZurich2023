@@ -4,6 +4,25 @@
 
 ![logo_transparent.png](images%2Flogo_transparent.png)
 
+# Table of Contents
+1. [The Seal Team @ HackZurich2023](#the-seal-team-@-hackzurich2023)
+    - [What is this?](#what-is-this)
+2. [Project Story](#project-story)
+    - [Inspiration](#inspiration)
+    - [What it does](#what-it-does)
+    - [How we built it](#how-we-built-it)
+    - [Challenges we ran into](#challenges-we-ran-into)
+    - [Accomplishments that we're proud of](#accomplishments-that-we're-proud-of)
+    - [What we learned](#what-we-learned)
+    - [What's next for Mindtrics - Mind metrics. Made simple](#whats-next-for-mindtrics---mind-metrics-made-simple)
+3. [Technical Choices](#technical-choices)
+    - [Brain Waves and OpenBCI](#brain-waves-and-openbci)
+    - [Activity Recognition](#activity-recognition)
+    - [BCI](#bci)
+    - [Gaze Estimation](#gaze-estimation)
+    - [How to use the Dashboard](#how-to-use-the-dashboard)
+4. [License and Credits](#license-and-credits)
+
 ## What is this?
 
 This is the repository of the Seal Team for the HackZurich 2023.
@@ -38,16 +57,22 @@ Our tool also uses a gaze detection neural network in order to identify eye move
 
 ## Challenges we ran into
 
-Integrating the EEG electrodes seamlessly into the Logitech headphones presented a considerable challenge. We had to ensure a harmonious marriage of form and function, where the user experiences the EEG monitoring effortlessly while enjoying high-quality audio.
-This demanded meticulous software design and a big number of tests.
+- Integration of EEG electrodes seamlessly into the Logitech + PC pipeline
+- Integration of multi-processing to run multiple neural networks, and algorithms over laptops 
+- Distributing computing workload across different laptops 
+- Integrating the UI for the live data streaming and results visualization.
+- Making of calibrated out-of-the-box gaze-to-screen estimation module.
+- Aggregation of collected telemetry to a score-based system.
+
 
 ## Accomplishments that we're proud of
 
-Integration of all the different metrics to the dashboard was one of the major ch
+- Integration of all the different metrics into the dashboard and **focus-based scoring system**.
+- Incorporating activity measurement and several other metrics for accurately identifying focus and "state-of-flow"
 
 ## What we learned
 
-Throughout this project, we deepened our understanding of EEG technology, signal processing, and BCI algorithms.
+Throughout this project, we deepened our understanding of EEG technology, signal processing, gaze estimation and BCI algorithms.
 The experience taught us valuable lessons in hardware-software integration, user-centric design, and the significance of precise data analysis in providing meaningful insights.
 
 ## What's next for Mindtrics - Mind metrics. Made simple
@@ -126,6 +151,6 @@ The dashboard is divided in 4 parts:
 
 You can also start a new session by clicking on the `Start Focusing!` button.
 
-#### License and Credits
+# License and Credits
 
 See the [LICENSE Information](https://hackzurich.com/faq) on the HackZurich Webpage.
