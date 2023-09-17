@@ -11,8 +11,46 @@ We are a team of 5 students from different universities in Europe.
 We are participating in the [Logitech Challenge](https://hackzurich.com/workshops) and our goal is to create a
 solution that helps people to focus on their work using Logitech products.
 
+# Project Story
+
+## Inspiration
+The inspiration behind "Mindtrics - Mind metrics. Made simple." stems from the growing importance of mental well-being and cognitive performance in our fast-paced digital world. 
+We wanted to create a tool that effortlessly integrates into daily life, leveraging cutting-edge EEG technology and Logitech's superior audio hardware to provide users with actionable insights into their focus levels and mental state.
+
+## What it does
+Our project, Mindtrics, uses the following:
+- Logitech webcam
+- Logitech headphones (with the proposed application of EEG electrodes onto the headphone frame)
+- Logitech keyboards, and mice 
+In order to create a seamless way to maintain the state of flow when carrying out any productive tasks.
+
+Instead of doing a **timer-based system** which can lead to breaking of the state of flow for users, we focus on ensuring the state of flow is not broken and users can extend these flow ranges beyond just a set timer. Our project incorporates real-time EEG data acquisition which is used to identify the level of focus that a person has had throughout time. In case the person goes below a specific threshold of focus, we can indicate this using our interactive website or through peripherals that allow RGB lighting. This provides a subtle way of indicating if the user is still in a state of flow or if they are unable to focus. 
+
+## How we built it
+We used OpenBCI's 8-channel EEG headset whose electrodes we plan on incorporating through the Logitech headphones. We used a Band Pass filter and notch filter to carry out the initial filtering of the signals obtained from the EEG electrodes and then convert them into Alpha, Beta, Gamma, Theta and Delta frequency wave categories. We use the ratio between Alpha and Beta waves to determine the level of focus the user has at different standpoints and a threshold to determine if they are focused or not. The logic is similar to most of the focus determining BCI tools available on the market and is possible to carry out with even 4 electrodes. 
+
+Our tool also uses a gaze detection neural network in order to identify eye movement patterns while performing tasks in front of the computer to check for changes in the direction of gaze.
+
+## Challenges we ran into
+Integrating the EEG electrodes seamlessly into the Logitech headphones presented a considerable challenge. We had to ensure a harmonious marriage of form and function, where the user experiences the EEG monitoring effortlessly while enjoying high-quality audio. 
+This demanded meticulous software design and a big number of tests.
+
+## Accomplishments that we're proud of
+Integration of all the different metrics to the dashboard was one of the major ch
+## What we learned
+Throughout this project, we deepened our understanding of EEG technology, signal processing, and BCI algorithms. 
+The experience taught us valuable lessons in hardware-software integration, user-centric design, and the significance of precise data analysis in providing meaningful insights.
+
+## What's next for Mindtrics - Mind metrics. Made simple
+Looking ahead, we envision further refinement and miniaturization of the EEG integration to enhance user comfort and convenience. We plan to develop a user-friendly interface or mobile application to present the focus metrics in an easily understandable and actionable format. 
+
+Additionally, we aim to incorporate machine learning techniques to personalize the threshold for focus determination based on individual user profiles, making Mindtrics a truly tailored mental wellness tool.
+
+# Technical Choices
+
 ## Brain Waves and OpenBCI
 
+We used OpenBCI's 8-channel EEG headset whose electrodes we plan on incorporating through the Logitech headphones. We used a Band Pass filter and notch filter to carry out the initial filtering of the signals obtained from the EEG electrodes and then convert them into Alpha, Beta, Gamma, Theta and Delta frequency wave categories. We use the ratio between Alpha and Beta waves to determine the level of focus the user has at different standpoints and a threshold to determine if they are focused or not. The logic is similar to most of the focus determining BCI tools available on the market and is possible to carry out with even 4 electrodes.
 
 
 ## Gaze Estimation
@@ -64,12 +102,6 @@ The dashboard is divided in 2 parts:
    average focus value. The **Focus Score** is a number between 0 and 1, where 1 is the best.
 
 You can also start a new session by clicking on the `Start Focusing!` button.
-
-#### References
-
-1. Lorem Ipsum
-2. Lorem Ipsum
-3. Lorem Ipsum
 
 #### License and Credits
 See the [LICENSE Information](https://hackzurich.com/faq) on the HackZurich Webpage.
