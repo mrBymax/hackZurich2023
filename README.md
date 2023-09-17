@@ -18,7 +18,11 @@ solution that helps people to focus on their work using Logitech products.
 ## Gaze Estimation
 Since gaze tracking model is using [existing repo](https://github.com/antoinelame/GazeTracking), you will also need to pull submodule for that model before running.
 
-![final_gaze_estimation_cut.gif](images/final_gaze_estimation_cut.gif)
+<!-- ![final_gaze_estimation_cut.gif](images/final_gaze_estimation_cut.gif) -->
+
+<p align="center">
+  <img src="images/final_gaze_estimation_cut.gif" width="50%" height="auto">
+</p>
 
 Gaze estimation is doing classic 2d vector gaze estimation and outputs statistics on first order rates of gaze change.
 To run Gaze estimation with Plotly Dash dashboards (as in the figure above):
