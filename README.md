@@ -1,7 +1,7 @@
 # The Seal Team @ HackZurich2023
 
 <!-- ![logo_final_white.png](images%2Flogo_final_white.png) -->
-![logo_dark_background.png](images%2Flogo_dark_background.png)
+![logo_transparent.png](images%2Flogo_transparent.png)
 
 ## What is this?
 
