@@ -46,6 +46,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import WebSocketClient from "@/lib/websocketcli"
 
 const groups = [
     {
@@ -187,14 +188,14 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                                     <SelectItem value="free">
                                         <span className="font-medium">Free</span> -{" "}
                                         <span className="text-muted-foreground">
-                      Trial for two weeks
-                    </span>
+                                            Trial for two weeks
+                                        </span>
                                     </SelectItem>
                                     <SelectItem value="pro">
                                         <span className="font-medium">Pro</span> -{" "}
                                         <span className="text-muted-foreground">
-                      $9/month per user
-                    </span>
+                                            $9/month per user
+                                        </span>
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
@@ -208,6 +209,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                     <Button type="submit">Continue</Button>
                 </DialogFooter>
             </DialogContent>
+            <WebSocketClient onDataReceived={(data: any) => console.log(data)} />
         </Dialog>
     )
 }

@@ -1,0 +1,18 @@
+{
+  "name": "logi-pomo-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "plugin.js",
+  "scripts": {
+    "start": "node plugin.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.3.1",
+    "open": "^9.1.0",
+    "reconnecting-websocket": "^4.4.0"
+  }
+}
