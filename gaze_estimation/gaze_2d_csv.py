@@ -43,17 +43,17 @@ def update_graph(gaze_ratios):
     time_axis = [i / fps for i in range(len(gaze_ratios))]
 
     # Update CSV files for each figure
-    with open('gaze_rate.csv', 'w', newline='') as csvfile:
+    with open('gaze_rate.csv', 'w+', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(['Time', 'Rate of Change - Horizontal', 'Rate of Change - Vertical', 'Total Rate of Change Squared'])
         csvwriter.writerows(zip(time_axis[1:], rate_of_change_horizontal, rate_of_change_vertical, total_rate_of_change_squared))
 
-    with open('gaze_minute.csv', 'w', newline='') as csvfile:
+    with open('gaze_minute.csv', 'w+', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(['Time', 'Cumulative Change - Last Minute'])
         csvwriter.writerows(zip(time_axis[1:], cumulative_change_minute))
 
-    with open('gaze_second.csv', 'w', newline='') as csvfile:
+    with open('gaze_second.csv', 'w+', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(['Time', 'Cumulative Change - Last Second'])
         csvwriter.writerows(zip(time_axis[1:], cumulative_change_second))
@@ -86,13 +86,25 @@ while True:
 
         update_graph(gaze_ratios)
         
+
         text = f'Horiz: {horizontal_ratio:.2f}, Vert: {vertical_ratio:.2f}'
+        color = (0, 255, 0)
         
 
     except:
-        text = "Error predicting"
+        text = "Blinking/No eyes detected"
+        color = (255,255,0)
 
-    cv2.putText(new_frame, text, (200,  200), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
+    cv2.putText(new_frame, text, (20,  20), cv2.FONT_HERSHEY_DUPLEX, 1, color, 2)
+
+    if(len(total_rate_of_change_squared) > 0 and not text == "Blinking/No eyes detected"):
+
+        if(total_rate_of_change_squared[-1] > 10.00):
+            cv2.putText(new_frame, "Extreme movement", (20,  50), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 255), 2)
+        elif(total_rate_of_change_squared[-1] < 3.00):
+            cv2.putText(new_frame, "Slow eye movement", (20,  50), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 0, 0), 2)
+    
+
     cv2.imshow(window_name, new_frame)
 
 

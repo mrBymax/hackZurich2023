@@ -1,6 +1,7 @@
 # The Seal Team @ HackZurich2023
 
-![logo_final_white.png](images%2Flogo_final_white.png)
+<!-- ![logo_final_white.png](images%2Flogo_final_white.png) -->
+![logo_dark_background.png](images%2Flogo_dark_background.png)
 
 ## What is this?
 
@@ -15,7 +16,25 @@ solution that helps people to focus on their work using Logitech products.
 
 
 ## Gaze Estimation
+Since gaze tracking model is using [existing repo](https://github.com/antoinelame/GazeTracking), you will also need to pull submodule for that model before running.
 
+![final_gaze_estimation_cut.gif](images/final_gaze_estimation_cut.gif)
+
+Gaze estimation is doing classic 2d vector gaze estimation and outputs statistics on first order rates of gaze change.
+To run Gaze estimation with Plotly Dash dashboards (as in the figure above):
+```
+python gaze_estimation/gaze_2d_dash.py
+```
+
+To run Gaze estimation standalone:
+```
+python gaze_estimation/gaze_2d_csv.py
+```
+
+To connect Gaze estimation remotely to Mindtrics General Dashboard:
+```
+python message_gaze_and_mouse_estimation.py
+```
 
 
 ## How to use the Dashboard
