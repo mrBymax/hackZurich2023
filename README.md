@@ -32,6 +32,8 @@ We used OpenBCI's 8-channel EEG headset whose electrodes we plan on incorporatin
 Our tool also uses a gaze detection neural network in order to identify eye movement patterns while performing tasks in front of the computer to check for changes in the direction of gaze.
 
 ## Challenges we ran into
+Integrating the EEG electrodes seamlessly into the Logitech headphones presented a considerable challenge. We had to ensure a harmonious marriage of form and function, where the user experiences the EEG monitoring effortlessly while enjoying high-quality audio. 
+This demanded meticulous software design and a big number of tests.
 
 ## Accomplishments that we're proud of
 Integration of all the different metrics to the dashboard was one of the major ch
